@@ -1,6 +1,8 @@
 <?php
 
+
 namespace PhalconRouter;
+
 
 class Yaml extends \Phalcon\Mvc\Router implements YamlInterface
 {

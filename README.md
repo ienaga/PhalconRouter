@@ -5,7 +5,7 @@
 
 ## Composer
 
-```js
+```json
 {
     "require": {
        "ienaga/phalcon-router-for-yaml": "*"
@@ -31,7 +31,7 @@ mypage_index:
 $di->set('router', function()
 {
     return new \PhalconRouter\Yaml::load(
-        new Phalcon\Config\Adapter\Yaml("path/route.yml")
+        new Phalcon\Config\Adapter\Yaml("path/routing.yml")
     );
 }, true);
 ```
