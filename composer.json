@@ -1,0 +1,22 @@
+{
+    "name": "ienaga/phalcon-router-for-yaml",
+    "homepage": "https://github.com/ienaga/PhalconRouter",
+    "description": "Phalcon Routering for Yaml",
+    "keywords": ["router", "phalcon", "yaml"],
+    "type": "library",
+    "license": "MIT",
+    "authors":[
+        {
+            "name": "Toshiyuki Ienaga",
+            "email": "ienaga@tvon.jp"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhalconRouter\\": "src/"
+        }
+    }
+}
