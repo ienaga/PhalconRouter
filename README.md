@@ -1,11 +1,10 @@
-# Phalcon Routering for Yaml
+# PhalconRouter
 
-[![Latest Stable Version](https://poser.pugx.org/ienaga/phalcon-router-for-yaml/v/stable)](https://packagist.org/packages/ienaga/phalcon-router-for-yaml) [![Total Downloads](https://poser.pugx.org/ienaga/phalcon-router-for-yaml/downloads)](https://packagist.org/packages/ienaga/phalcon-router-for-yaml) [![Latest Unstable Version](https://poser.pugx.org/ienaga/phalcon-router-for-yaml/v/unstable)](https://packagist.org/packages/ienaga/phalcon-router-for-yaml) [![License](https://poser.pugx.org/ienaga/phalcon-router-for-yaml/license)](https://packagist.org/packages/ienaga/phalcon-router-for-yaml)
-
+Phalcon Routering for Yaml
 
 ## Composer
 
-```json
+```js
 {
     "require": {
        "ienaga/phalcon-router-for-yaml": "*"
@@ -31,7 +30,7 @@ mypage_index:
 $di->set('router', function()
 {
     return new \PhalconRouter\Yaml::load(
-        new Phalcon\Config\Adapter\Yaml("path/routing.yml")
+        new Phalcon\Config\Adapter\Yaml("path/route.yml")
     );
 }, true);
 ```
