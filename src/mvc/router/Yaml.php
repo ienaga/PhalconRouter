@@ -1,35 +1,31 @@
 <?php
 
-
 namespace PhalconRouter;
 
-
-class Yaml extends \Phalcon\Mvc\Router implements YamlInterface
+class Yaml implements YamlInterface
 {
 
     /**
      * @param  array $config
-     * @return bool|Yaml
+     * @return \Phalcon\Mvc\Router
      */
-    static function load($config = array())
+    public static function load($config = array())
     {
-        $route = new static();
-
-        if (!is_array($config) || !$config) {
-            return false;
-        }
+        $router = new \Phalcon\Mvc\Router(false);
+        $router->setUriSource(\Phalcon\Mvc\Router::URI_SOURCE_SERVER_REQUEST_URI);
 
         // add
         foreach ($config as $key => $values) {
             $pattern = self::createPattern($key, $values);
             $method  = self::createMethod($values);
             $paths   = self::createPaths(explode("_", $key), $values);
-            $route->add($pattern, $paths, $method);
+            $router
+                ->add($pattern, $paths)
+                ->setName($key)
+                ->via($method);
         }
 
-        $route->handle();
-
-        return $route;
+        return $router;
     }
 
     /**
@@ -37,7 +33,7 @@ class Yaml extends \Phalcon\Mvc\Router implements YamlInterface
      * @param  array  $values
      * @return string
      */
-    static function createPattern($key, $values)
+    public static function createPattern($key, $values)
     {
         $pattern = (isset($values["url"]))
             ? $values["url"]
@@ -54,12 +50,13 @@ class Yaml extends \Phalcon\Mvc\Router implements YamlInterface
      * @param  array $values
      * @return string|array
      */
-    static function createMethod($values = array())
+    public static function createMethod($values = array())
     {
         $method = "GET";
         if (isset($values["method"])) {
             $method = $values["method"];
         }
+
         return $method;
     }
 
@@ -68,7 +65,7 @@ class Yaml extends \Phalcon\Mvc\Router implements YamlInterface
      * @param  array $values
      * @return array
      */
-    static function createPaths($pairs = array(), $values = array())
+    public static function createPaths($pairs = array(), $values = array())
     {
         $paths = array();
 
