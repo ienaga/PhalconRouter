@@ -6,19 +6,20 @@ class Yaml implements YamlInterface
 {
 
     /**
-     * @param  array $config
+     * @param  \Phalcon\Config\Adapter\Yaml $config
      * @return \Phalcon\Mvc\Router
      */
-    public static function load($config = array())
+    public static function load(\Phalcon\Config\Adapter\Yaml $config)
     {
         $router = new \Phalcon\Mvc\Router(false);
         $router->setUriSource(\Phalcon\Mvc\Router::URI_SOURCE_SERVER_REQUEST_URI);
 
         // add
         foreach ($config as $key => $values) {
-            $pattern = self::createPattern($key, $values);
+            $keys    = explode("_", $key);
+            $pattern = self::createPattern($keys, $values);
             $method  = self::createMethod($values);
-            $paths   = self::createPaths(explode("_", $key), $values);
+            $paths   = self::createPaths($keys, $values);
             $router
                 ->add($pattern, $paths)
                 ->setName($key)
@@ -29,15 +30,15 @@ class Yaml implements YamlInterface
     }
 
     /**
-     * @param  string $key
+     * @param  array  $keys
      * @param  array  $values
      * @return string
      */
-    public static function createPattern($key, $values)
+    public static function createPattern($keys, $values)
     {
         $pattern = (isset($values["url"]))
             ? $values["url"]
-            : "/" . str_replace("_", "/", $key);
+            : "/" . implode("/", $keys);
 
         if (strlen($pattern) > 1 && mb_substr($pattern, -1) === "/") {
             $pattern = substr($pattern, 0, -1);
@@ -48,7 +49,7 @@ class Yaml implements YamlInterface
 
     /**
      * @param  array $values
-     * @return string|array
+     * @return mixed
      */
     public static function createMethod($values = array())
     {

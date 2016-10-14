@@ -7,21 +7,21 @@ namespace PhalconRouter;
 interface YamlInterface
 {
     /**
-     * @param  array $config
-     * @return bool|Yaml
+     * @param  \Phalcon\Config\Adapter\Yaml $config
+     * @return \Phalcon\Mvc\Router
      */
-    public static function load($config = array());
+    public static function load(\Phalcon\Config\Adapter\Yaml $config);
 
     /**
-     * @param  string $key
+     * @param  array  $keys
      * @param  array  $values
      * @return string
      */
-    public static function createPattern($key, $values);
+    public static function createPattern($keys, $values);
 
     /**
      * @param  array $values
-     * @return string|array
+     * @return mixed
      */
     public static function createMethod($values = array());
 
