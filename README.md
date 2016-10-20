@@ -1,5 +1,6 @@
 # Phalcon Routering for Yaml
 
+
 [![Build Status](https://travis-ci.org/ienaga/PhalconRouter.svg?branch=master)](https://travis-ci.org/ienaga/PhalconRouter)
 
 
@@ -19,6 +20,7 @@
 
 ## routing.yml sample
 
+
 ### min
 
 ```yaml
@@ -35,7 +37,7 @@ mypage_index:
   url:        /mypage/{user_id}
   controller: mypage
   action:     index
-  namespace:  \Name\Space
+  namespace:  \ProjectName\Module
 ```
 
 
