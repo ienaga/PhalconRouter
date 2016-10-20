@@ -14,11 +14,15 @@ Phalcon Routering for Yaml
 
 ## routing.yml sample
 
-```yaml
-# min
-mypage_index: # /mypage/index
+### min
 
-# max
+```yaml
+mypage_index: # /mypage/index
+```
+
+
+### max
+```yaml
 mypage_index:
   module:     frontend # Default app/controllers/*
   method:     [ GET, POST ] # Default GER

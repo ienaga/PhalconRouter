@@ -1,8 +1,6 @@
 <?php
 
-
 namespace PhalconRouter;
-
 
 interface YamlInterface
 {
@@ -21,7 +19,7 @@ interface YamlInterface
 
     /**
      * @param  array $values
-     * @return mixed
+     * @return array|string
      */
     public static function createMethod($values = array());
 

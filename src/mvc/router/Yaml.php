@@ -14,16 +14,15 @@ class Yaml implements YamlInterface
         $router = new \Phalcon\Mvc\Router(false);
         $router->setUriSource(\Phalcon\Mvc\Router::URI_SOURCE_SERVER_REQUEST_URI);
 
-        // add
+        // router add
         foreach ($config as $key => $values) {
             $keys    = explode("_", $key);
             $pattern = self::createPattern($keys, $values);
             $method  = self::createMethod($values);
             $paths   = self::createPaths($keys, $values);
             $router
-                ->add($pattern, $paths)
-                ->setName($key)
-                ->via($method);
+                ->add($pattern, $paths, $method)
+                ->setName($key);
         }
 
         return $router;
@@ -34,14 +33,22 @@ class Yaml implements YamlInterface
      * @param  array  $values
      * @return string
      */
-    public static function createPattern($keys, $values)
+    public static function createPattern($keys = array(), $values = array())
     {
         $pattern = (isset($values["url"]))
             ? $values["url"]
-            : "/" . implode("/", $keys);
+            : "/" . implode("/", array_slice($keys, 0, 2));
 
-        if (strlen($pattern) > 1 && mb_substr($pattern, -1) === "/") {
-            $pattern = substr($pattern, 0, -1);
+        if (strlen($pattern) > 1) {
+            // set top slash
+            if (mb_substr($pattern, 0, 1) !== "/") {
+                $pattern = "/". $pattern;
+            }
+
+            // delete end slash
+            if (mb_substr($pattern, -1) === "/") {
+                $pattern = substr($pattern, 0, -1);
+            }
         }
 
         return $pattern;
@@ -49,16 +56,11 @@ class Yaml implements YamlInterface
 
     /**
      * @param  array $values
-     * @return mixed
+     * @return array|string
      */
     public static function createMethod($values = array())
     {
-        $method = "GET";
-        if (isset($values["method"])) {
-            $method = $values["method"];
-        }
-
-        return $method;
+        return (isset($values["method"])) ? $values["method"] : "GET";
     }
 
     /**
@@ -74,9 +76,9 @@ class Yaml implements YamlInterface
             $type = strtolower($key);
             switch ($type) {
                 case "namespace":
+                case "module":
                 case "controller":
                 case "action":
-                case "module":
                     $paths[$type] = $value;
                     break;
             }
