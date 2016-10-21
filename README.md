@@ -1,4 +1,4 @@
-# Phalcon Routering for Yaml
+# Phalcon Router for Yaml
 
 
 [![Build Status](https://travis-ci.org/ienaga/PhalconRouter.svg?branch=master)](https://travis-ci.org/ienaga/PhalconRouter)
