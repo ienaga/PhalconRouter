@@ -44,7 +44,7 @@ mypage_index:
 ## app/config/services.php
 
 ```php
-$di->set('router', function () {
+$di->set("router", function () {
     return \PhalconRouter\Yaml::load(
         new \Phalcon\Config\Adapter\Yaml(APP_PATH ."/directory/routing.yml")
     );
