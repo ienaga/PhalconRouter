@@ -60,7 +60,12 @@ class Yaml implements YamlInterface
      */
     public static function createMethod($values = array())
     {
-        return (isset($values["method"])) ? $values["method"] : "GET";
+        if (!isset($values["method"])) {
+            return "GET";
+        }
+
+        $methods = $values["method"];
+        return  (is_string($methods)) ? $methods : $methods->toArray();
     }
 
     /**
