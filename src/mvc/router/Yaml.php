@@ -29,6 +29,27 @@ class Yaml implements YamlInterface
     }
 
     /**
+     * @param  \Phalcon\Mvc\Router $router
+     * @param  \Phalcon\Config\Adapter\Yaml $config
+     * @return \Phalcon\Mvc\Router
+     */
+    public static function add(\Phalcon\Mvc\Router $router, \Phalcon\Config\Adapter\Yaml $config)
+    {
+        // router add
+        foreach ($config as $key => $values) {
+            $keys    = explode("_", $key);
+            $pattern = self::createPattern($keys, $values);
+            $method  = self::createMethod($values);
+            $paths   = self::createPaths($keys, $values);
+            $router
+                ->add($pattern, $paths, $method)
+                ->setName($key);
+        }
+
+        return $router;
+    }
+
+    /**
      * @param  array  $keys
      * @param  array  $values
      * @return string
