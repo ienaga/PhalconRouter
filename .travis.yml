@@ -18,7 +18,7 @@ before_install:
   - bin/install-yaml.sh
   - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer install --dev -o --prefer-source --no-interaction
-  - bin/install-phalcon.sh v3.0.4
+  - bin/install-phalcon.sh v3.1.0
 
 script:
   - php -r "echo \Phalcon\Version::get();"
