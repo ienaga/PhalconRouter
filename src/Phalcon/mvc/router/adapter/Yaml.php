@@ -54,7 +54,7 @@ class Yaml implements YamlInterface
      * @param  array  $values
      * @return string
      */
-    public static function createPattern(array $keys = array(), array $values = array()): string
+    public static function createPattern(array $keys = array(), $values = array()): string
     {
         $pattern = (isset($values["url"]))
             ? $values["url"]

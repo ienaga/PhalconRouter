@@ -15,7 +15,7 @@ interface YamlInterface
      * @param  array  $values
      * @return string
      */
-    public static function createPattern(array $keys, array $values);
+    public static function createPattern(array $keys = array(), $values = array());
 
     /**
      * @param  array $values
