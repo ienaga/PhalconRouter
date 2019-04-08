@@ -1,6 +1,6 @@
 <?php
 
-namespace Phalcon\Mvc\Router\Adapter\Yaml;
+namespace Phalcon\Mvc\Router\Adapter;
 
 class Yaml implements YamlInterface
 {
