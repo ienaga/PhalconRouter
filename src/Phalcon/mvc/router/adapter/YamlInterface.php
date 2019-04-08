@@ -28,5 +28,5 @@ interface YamlInterface
      * @param  array $values
      * @return array
      */
-    public static function createPaths(array $pairs = array(), array $values = array());
+    public static function createPaths($pairs = array(), $values = array());
 }

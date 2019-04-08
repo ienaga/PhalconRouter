@@ -94,7 +94,7 @@ class Yaml implements YamlInterface
      * @param  array $values
      * @return array
      */
-    public static function createPaths(array $pairs = array(), array $values = array()): array
+    public static function createPaths($pairs = array(), $values = array()): array
     {
         $paths = array();
 
