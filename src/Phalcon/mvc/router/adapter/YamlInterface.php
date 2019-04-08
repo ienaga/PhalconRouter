@@ -15,13 +15,13 @@ interface YamlInterface
      * @param  array  $values
      * @return string
      */
-    public static function createPattern(array $keys = array(), $values = array());
+    public static function createPattern($keys = array(), $values = array());
 
     /**
      * @param  array $values
      * @return array|string
      */
-    public static function createMethod(array $values = array());
+    public static function createMethod($values = array());
 
     /**
      * @param  array $pairs
