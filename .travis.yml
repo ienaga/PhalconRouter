@@ -1,8 +1,6 @@
 language: php
 
 php:
-  - 5.5
-  - 5.6
   - 7.0
   - 7.1
   - 7.2
@@ -16,10 +14,13 @@ cache:
 before_install:
   - chmod +x bin/*.sh
   - pecl channel-update pecl.php.net
-  - bin/install-yaml.sh
+  - pecl install yaml-2.0.4 < /dev/null
   - echo "extension=yaml.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer install --dev -o --prefer-source --no-interaction
   - bin/install-phalcon.sh v3.4.1
+
+before_script:
+  - sleep 20
 
 script:
   - php -r "echo \Phalcon\Version::get();"

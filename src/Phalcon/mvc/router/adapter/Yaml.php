@@ -1,6 +1,6 @@
 <?php
 
-namespace PhalconRouter;
+namespace Phalcon\Mvc\Router\Adapter\Yaml;
 
 class Yaml implements YamlInterface
 {
@@ -9,7 +9,7 @@ class Yaml implements YamlInterface
      * @param  \Phalcon\Config\Adapter\Yaml $config
      * @return \Phalcon\Mvc\Router
      */
-    public static function load(\Phalcon\Config\Adapter\Yaml $config)
+    public static function load(\Phalcon\Config\Adapter\Yaml $config): \Phalcon\Mvc\Router
     {
         $router = new \Phalcon\Mvc\Router(false);
         $router->setUriSource(\Phalcon\Mvc\Router::URI_SOURCE_SERVER_REQUEST_URI);
@@ -33,7 +33,7 @@ class Yaml implements YamlInterface
      * @param  \Phalcon\Config\Adapter\Yaml $config
      * @return \Phalcon\Mvc\Router
      */
-    public static function add(\Phalcon\Mvc\Router $router, \Phalcon\Config\Adapter\Yaml $config)
+    public static function add(\Phalcon\Mvc\Router $router, \Phalcon\Config\Adapter\Yaml $config): \Phalcon\Mvc\Router
     {
         // router add
         foreach ($config as $key => $values) {
@@ -54,7 +54,7 @@ class Yaml implements YamlInterface
      * @param  array  $values
      * @return string
      */
-    public static function createPattern($keys = array(), $values = array())
+    public static function createPattern(array $keys = array(), array $values = array()): string
     {
         $pattern = (isset($values["url"]))
             ? $values["url"]
@@ -76,10 +76,10 @@ class Yaml implements YamlInterface
     }
 
     /**
-     * @param  array $values
+     * @param array $values
      * @return array|string
      */
-    public static function createMethod($values = array())
+    public static function createMethod(array $values = array())
     {
         if (!isset($values["method"])) {
             return "GET";
@@ -94,7 +94,7 @@ class Yaml implements YamlInterface
      * @param  array $values
      * @return array
      */
-    public static function createPaths($pairs = array(), $values = array())
+    public static function createPaths(array $pairs = array(), array $values = array()): array
     {
         $paths = array();
 

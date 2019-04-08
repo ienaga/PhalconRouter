@@ -1,6 +1,6 @@
 <?php
 
-namespace PhalconRouter;
+namespace Phalcon\Mvc\Router\Adapter\Yaml;
 
 interface YamlInterface
 {
@@ -15,18 +15,18 @@ interface YamlInterface
      * @param  array  $values
      * @return string
      */
-    public static function createPattern($keys, $values);
+    public static function createPattern(array $keys, array $values);
 
     /**
      * @param  array $values
      * @return array|string
      */
-    public static function createMethod($values = array());
+    public static function createMethod(array $values = array());
 
     /**
      * @param  array $pairs
      * @param  array $values
      * @return array
      */
-    public static function createPaths($pairs = array(), $values = array());
+    public static function createPaths(array $pairs = array(), array $values = array());
 }

@@ -1,6 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../src/mvc/router/Yaml.php";
+require_once __DIR__ . "/../src/Phalcon/mvc/router/adapter/Yaml.php";
+
+use Phalcon\Mvc\Router\Adapter\Yaml;
 
 class YamlTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,7 +12,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePatternEmptyValues()
     {
-        $pattern = \PhalconRouter\Yaml::createPattern(
+        $pattern = Yaml::createPattern(
             array(
                 "member",
                 "create"
@@ -26,7 +28,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePatternPluralKeysAndEmptyValues()
     {
-        $pattern = \PhalconRouter\Yaml::createPattern(
+        $pattern = Yaml::createPattern(
             array(
                 "member",
                 "list",
@@ -43,7 +45,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePatternEmptyKeys()
     {
-        $pattern = \PhalconRouter\Yaml::createPattern(
+        $pattern = Yaml::createPattern(
             array(),
             new Phalcon\Config(array(
                 "url" => "/member/update"
@@ -57,7 +59,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePatternEmptyKeysAndTopNotSlash()
     {
-        $pattern = \PhalconRouter\Yaml::createPattern(
+        $pattern = Yaml::createPattern(
             array(),
             new Phalcon\Config(array(
                 "url" => "member/update"
@@ -71,7 +73,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePatternEmptyKeysAndEndSlash()
     {
-        $pattern = \PhalconRouter\Yaml::createPattern(
+        $pattern = Yaml::createPattern(
             array(),
             new Phalcon\Config(array(
                 "url" => "/member/update/"
@@ -85,7 +87,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateMethodCaseArray()
     {
-        $method = \PhalconRouter\Yaml::createMethod(
+        $method = Yaml::createMethod(
             new Phalcon\Config(array(
                 "method" => array(
                     "GET", "POST"
@@ -102,7 +104,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateMethodCaseString()
     {
-        $method = \PhalconRouter\Yaml::createMethod(
+        $method = Yaml::createMethod(
             new Phalcon\Config(array(
                 "method" => "PUT"
             )
@@ -115,7 +117,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateMethodCaseEmpty()
     {
-        $method = \PhalconRouter\Yaml::createMethod();
+        $method = Yaml::createMethod();
         $this->assertEquals("GET", $method);
     }
 
@@ -124,7 +126,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePaths()
     {
-        $paths = \PhalconRouter\Yaml::createPaths(
+        $paths = Yaml::createPaths(
             new Phalcon\Config(array("mypage", "index")),
                 new Phalcon\Config(array(
                 "namespace" => "Test\\Case",
@@ -145,7 +147,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePathsEmptyPaths()
     {
-        $paths = \PhalconRouter\Yaml::createPaths(
+        $paths = Yaml::createPaths(
             new Phalcon\Config(array("farm", "edit")),
             new Phalcon\Config(array())
         );
@@ -159,7 +161,7 @@ class YamlTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreatePathsEmptyPathsAndPairsSingular()
     {
-        $paths = \PhalconRouter\Yaml::createPaths(
+        $paths = Yaml::createPaths(
             new Phalcon\Config(array("mypage")),
             new Phalcon\Config(array())
         );

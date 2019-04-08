@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PhalconRouter\\": "src/"
+            "Phalcon\\Mvc\\Router\\Adapter\\": "src/"
         }
     }
 }
